@@ -6,3 +6,7 @@ cypress/support
 
 .idea
 .DS_store
+.venv
+__pycache__
+*.pyc
+transactions.db

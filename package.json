@@ -2,8 +2,8 @@
   "name": "account-management-backend-level-1",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo build your app here",
-    "start": "echo start your app here",
+    "build": "python3 -m venv .venv && .venv/bin/pip install -r requirements.txt",
+    "start": ".venv/bin/python -m uvicorn app.main:app --host 0.0.0.0 --port 8080",
     "test": "cypress run"
   },
   "devDependencies": {
