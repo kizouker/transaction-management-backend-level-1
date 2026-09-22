@@ -1,0 +1,41 @@
+name: Run tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          python-version: "3.14"
+
+      - name: Install Python dependencies
+        run: uv sync
+
+      - name: Start API server
+        run: uv run uvicorn app.main:app --port 8000 &
+
+      - name: Wait for API to be ready
+        run: |
+          for i in {1..30}; do
+            curl -sf http://localhost:8000/ping && break
+            sleep 1
+          done
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        run: npx cypress run
