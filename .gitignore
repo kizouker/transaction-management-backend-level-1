@@ -10,3 +10,4 @@ cypress/support
 __pycache__
 *.pyc
 transactions.db
+.venv/
