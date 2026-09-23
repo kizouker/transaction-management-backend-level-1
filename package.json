@@ -8,5 +8,9 @@
   },
   "devDependencies": {
     "cypress": "^15.21.1"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3"
   }
 }

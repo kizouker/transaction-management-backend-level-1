@@ -1,0 +1,35 @@
+{
+  "type": "function",
+  "function": {
+    "name": "manage_bank_account",
+    "description": "Utför bankärenden så som att hämta saldon, söka i transaktionshistorik samt initiera överföringar och betalningar (Bankgiro/Plusgiro).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": ["get_balance", "list_transactions", "initiate_transfer"],
+          "description": "Den bankåtgärd som ska utföras. 'get_balance' visar saldo, 'list_transactions' hämtar historik, och 'initiate_transfer' genomför en överföring eller betalning."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "Det unika ID-numret för det konto som åtgärden gäller (t.ex. 'acc_998877_swe')."
+        },
+        "search_query": {
+          "type": "string",
+          "description": "Fritextsökning för transaktionshistorik. Används för att filtrera på specifika mottagare eller affärer (t.ex. 'ICA', 'Netflix', 'Swish')."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Beloppet som ska överföras eller betalas. Krävs endast om 'action' är 'initiate_transfer'."
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 140,
+          "description": "Ett meddelande till mottagaren eller ett OCR-nummer för betalningar. Max 140 tecken."
+        }
+      },
+      "required": ["action", "account_id"]
+    }
+  }
+}
