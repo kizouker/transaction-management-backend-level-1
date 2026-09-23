@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import openAiSchema from './openai-bank-schema.json';
+import openAiSchema from '../../../openai-bank-schema.json';
 
 // Vi håller de mänskliga förklaringarna och exemplen här i React istället för i JSON-filen
 const humanInterpretations = {
