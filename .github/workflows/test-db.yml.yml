@@ -19,4 +19,4 @@ jobs:
           echo "$TABLES" | grep -q "money_transfer" || exit 1
 
       - name: Run test inserts/queries
-        run: sqlite3 test.db < sql/load_test.sql
+        run: sqlite3 test.db < sql/seed-load-test-account.sql
