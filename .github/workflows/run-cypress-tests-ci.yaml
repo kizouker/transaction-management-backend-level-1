@@ -1,76 +1,18 @@
+name: CI
 
-/
-Claude Desktop (macOS), Connected
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Cypress tests · YML
-name: Cypress Tests
- 
 on:
   push:
-    branches:
-      - '**'
+    branches: [ pre-test-transactions ]
   pull_request:
-    branches:
-      - '**'
- 
+    branches: [  pre-test-transactions]
+
 jobs:
-  cypress-run:
-    name: Run Cypress tests
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
- 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
- 
-      - name: Install dependencies
-        run: npm ci
- 
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
-        with:
-          build: npm run build
-          start: npm start
-          wait-on: 'http://localhost:3000'
-          browser: chrome
- 
-      - name: Upload screenshots on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
- 
-      - name: Upload videos
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-videos
-          path: cypress/videos
- 
+          node-version: '20'
+      - run: npm install
+      - run: npm test
