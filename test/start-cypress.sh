@@ -1,0 +1,1 @@
+   npx cypress open --config-file test/cypress.config.js

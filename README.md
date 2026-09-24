@@ -31,9 +31,11 @@ sqlite3 mydatabase.db < ./sql/schema.sql
 2.hur installerar man?
 3.vad kan jag testa med det?
 
- npm install cypress --save-dev
+``` npm install cypress --save-dev```
 
-
+```npx cypress run --record --config-file test/cypress.config.js```
+```   npx cypress open --config-file test/cypress.config.js ```
+```npx cypress run --config-file test/cypress.config.js```
  git push origin pre-test-transactions # skapar branchen remote
  gh repo edit KIZOUKER/transaction-management-backend-level-1 --default-branch pre-test-transactions 
 

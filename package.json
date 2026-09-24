@@ -4,7 +4,8 @@
   "scripts": {
     "build": "echo build your app here",
     "start": "echo start your app here",
-    "test": "cypress run"
+    "test": "cypress run",
+    "cypress:open": "cypress open --config-file test/cypress.config.js"
   },
   "devDependencies": {
     "cypress": "^12.17.1"
