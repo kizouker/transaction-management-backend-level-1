@@ -45,9 +45,11 @@ sqlite3 mydatabase.db < ./sql/schema.sql
  - Skapa tabellerna
  - bestäm vilka fält kolumner
  - bestäm datatyper etc
-```sqlite3 mydatabase.db < ./sql/schema.sql 
-    sqlite3 alvalabs-kodtest.db ".tables"    
-```
+```sqlite3 mydatabase.db < ./sql/schema.sql ```
+``` sqlite3 alvalabs-kodtest.db ".tables"    ```
+``` sqlite3 alvalabs-kodtest.db ".schema"    ```
+
+
 
 ## Seed.sql
 - fyll tabellerna med data

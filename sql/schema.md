@@ -11,7 +11,7 @@ ACCOUNT ||--o{ TRANSACTION : "receives (to)"
         numeric balance "NOT NULL"
         varchar currency "NOT NULL"
     }
-    TRANSACTION {
+    money_transfer {
         varchar id PK "NOT NULL"
         varchar from_account_id FK "NOT NULL"
         varchar to_account_id FK "NOT NULL"
@@ -58,3 +58,23 @@ ACCOUNT ||--o{ TRANSACTION : "receives (to)"
 }o	noll eller många
 }|	en eller många
 
+
+## SQLite quick reference
+
+**Start / run a script**
+```bash
+sqlite3 mydatabase.db              # open (creates file if missing)
+sqlite3 mydatabase.db < schema.sql # run a script non-interactively
+```
+
+**Inside the sqlite3 prompt** (dot-commands, no semicolon)
+```
+.tables -- list all tables
+.schema -- show CREATE statements for all tables
+.schema table_name -- show CREATE statement for one table
+.headers on -- show column names in query results
+.mode column -- nicer table formatting
+.databases -- show connected database file
+.read schema.sql -- run a .sql file from inside the prompt
+.quit -- exit
+```

@@ -6,3 +6,4 @@ cypress/support
 
 .idea
 .DS_store
+alvalabs-kodtest.db
