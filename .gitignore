@@ -7,3 +7,6 @@ cypress/support
 .idea
 .DS_store
 ./sql/fixtures/alvalabs-kodtest.db
+__pycache__/
+*.pyc
+.venv
