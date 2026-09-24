@@ -23,6 +23,8 @@ sqlite3 mydatabase.db < ./sql/schema.sql
 
 ### FastAPI — POST-endpoint som tar emot data via curl och lagrar i DB
 
+```uvicorn app.main:app --reload --port 8080```
+
 ### E2E-test — POST:ar in data, verifierar via DB-fråga eller GET-endpoint
 - jag har tagit tester från ert repo
 - jag ska sätta upp så att github kör dessa varje gång jag checkar in
