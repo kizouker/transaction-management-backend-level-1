@@ -1,0 +1,25 @@
+name: Setup boilerplate
+
+on:
+  workflow_dispatch:
+    inputs:
+      boilerplate:
+        type: string
+        description: Name of boilerplate
+        required: true
+      branch-name:
+        type: string
+        description: Name of the branch to initialize boilerplate in
+        required: true
+        default: implementation
+
+
+jobs:
+  setup-boilerplate:
+    name: Setup boilerplate
+    uses: DevSkillsHQ/setup-boilerplate-workflow/.github/workflows/setup-boilerplate.yml@cypress12
+    permissions:
+      contents: write
+    with:
+      boilerplate: ${{ github.event.inputs.boilerplate }}
+      branch-name: ${{ github.event.inputs.branch-name }}
