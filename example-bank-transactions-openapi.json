@@ -1,0 +1,173 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Bank Transaction Management API (exempel/hittepå)",
+    "version": "1.0.0",
+    "description": "Påhittad exempel-spec för övning — inte den riktiga Alva Labs-specen. Modellerar ett enkelt bank-/transaktionssystem: konton och transaktioner."
+  },
+  "servers": [
+    { "url": "http://localhost:8000" }
+  ],
+  "paths": {
+    "/ping": {
+      "get": {
+        "summary": "Healthcheck",
+        "responses": {
+          "200": {
+            "description": "Tjänsten är uppe",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": { "status": { "type": "string", "example": "ok" } } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountId}": {
+      "get": {
+        "summary": "Hämta ett konto",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Kontot hittades",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Account" }
+              }
+            }
+          },
+          "404": { "description": "Kontot finns inte" }
+        }
+      }
+    },
+    "/transactions": {
+      "post": {
+        "summary": "Skapa en ny transaktion",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/NewTransaction" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transaktionen skapades",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Transaction" }
+              }
+            }
+          },
+          "400": { "description": "Ogiltig indata (t.ex. otillräckligt saldo, fel valuta)" },
+          "404": { "description": "Käll- eller målkonto finns inte" }
+        }
+      },
+      "get": {
+        "summary": "Lista alla transaktioner",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "format": "uuid" },
+            "description": "Filtrera på konto"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista med transaktioner",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Transaction" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{transactionId}": {
+      "get": {
+        "summary": "Hämta en specifik transaktion",
+        "parameters": [
+          {
+            "name": "transactionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaktionen hittades",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Transaction" }
+              }
+            }
+          },
+          "404": { "description": "Transaktionen finns inte" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "ownerName": { "type": "string", "example": "Rickard Åberg" },
+          "balance": { "type": "number", "format": "double", "example": 15230.50 },
+          "currency": { "type": "string", "example": "SEK" }
+        },
+        "required": ["id", "ownerName", "balance", "currency"]
+      },
+      "NewTransaction": {
+        "type": "object",
+        "properties": {
+          "fromAccountId": { "type": "string", "format": "uuid" },
+          "toAccountId": { "type": "string", "format": "uuid" },
+          "amount": { "type": "number", "format": "double", "example": 250.00 },
+          "currency": { "type": "string", "example": "SEK" },
+          "description": { "type": "string", "example": "Hyra september" }
+        },
+        "required": ["fromAccountId", "toAccountId", "amount", "currency"]
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "fromAccountId": { "type": "string", "format": "uuid" },
+          "toAccountId": { "type": "string", "format": "uuid" },
+          "amount": { "type": "number", "format": "double" },
+          "currency": { "type": "string" },
+          "description": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "completed", "failed"],
+            "example": "completed"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-24T09:12:00Z"
+          }
+        },
+        "required": ["id", "fromAccountId", "toAccountId", "amount", "currency", "status", "createdAt"]
+      }
+    }
+  }
+}
