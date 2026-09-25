@@ -10,12 +10,12 @@ jobs:
     permissions:
       actions: write
     steps:
-      - name: Delete runs older than 30 days
+      - name: Delete runs older than one days
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          cutoff=$(date -d '30 days ago' -u +%Y-%m-%dT%H:%M:%SZ)
+          cutoff=$(date -d '1 days ago' -u +%Y-%m-%dT%H:%M:%SZ)
           gh run list --repo "$REPO" --limit 500 --json databaseId,createdAt \
             --jq ".[] | select(.createdAt < \"$cutoff\") | .databaseId" \
           | xargs -r -I{} gh run delete {} --repo "$REPO"
