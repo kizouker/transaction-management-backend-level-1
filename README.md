@@ -1,21 +1,21 @@
 ## Development plan
 
-### spec
-- openapi i json . påhittat av claude
+### Requirements
+- ```openanAPI``` i ```json``` 
 
-### GitHub + repo — skapa repot, git init lokalt
+<!-- ### GitHub + repo — skapa repot, git init lokalt -->
 
 ### Github Actions?
 - kör cI tester V
 - ger fel just nu men kommer nog fungera när jag får upp api:et
 
 ### Python-projekt — venv, requirements.txt (fastapi, uvicorn, sqlalchemy, pytest, httpx)
-
+```uv pip install fastapi uvicorn```
 
 ### SQL/DB — schema för en transactions-tabell
 - skapa create table för definitioner
-rm -f mydatabase.db
-sqlite3 mydatabase.db < ./sql/schema.sql
+ rm -f mydatabase.db
+ sqlite3 mydatabase.db < ./sql/schema.sql
 
 ### Skuggdata — seed-script som fyller tabellen med testdata
 - seed script
@@ -89,3 +89,14 @@ Vad innehåller api:et och hur är det kopplat till REST, HTTP
 - NewTransaction V
 - type object
 - Entiteter : Konto/Account  && Transactions V
+
+## python
+### db manager
+    * hur hittar vi db.filen
+    * skapa connection
+    * stäng connection
+    * context manager
+    * row factory
+    * class or not class
+### routers
+### 
