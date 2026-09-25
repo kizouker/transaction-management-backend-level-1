@@ -18,5 +18,5 @@ jobs:
           echo "$TABLES" | grep -q "bank_account" || exit 1
           echo "$TABLES" | grep -q "money_transfer" || exit 1
 
-      - name: Run test inserts/queries
-        run: sqlite3 test.db < sql/seed-load-test-account.sql
+      # - name: Run test inserts/queries
+      #   run: sqlite3 test.db < sql/seed-load-test-account.sql

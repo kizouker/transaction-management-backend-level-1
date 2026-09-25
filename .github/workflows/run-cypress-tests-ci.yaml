@@ -1,10 +1,10 @@
-name: CI
+name: CI-run-cypress-tests-ci
 
 on:
   push:
-    branches: [ pre-test-transactions ]
+    branches: [ level-1-diy-rickard-kodar-utan-ai  ]
   pull_request:
-    branches: [  pre-test-transactions]
+    branches: [  level-1-diy-rickard-kodar-utan-ai ]
 
 jobs:
   build:
